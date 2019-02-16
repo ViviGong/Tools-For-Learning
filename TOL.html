@@ -2,7 +2,9 @@
 <html>
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-      <iframe width="640" height="360" src="https://www.youtube.com/embed/QJ3pXBuWNFs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div id="player"></div>
+    
+    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/QJ3pXBuWNFs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
 
     <script>
@@ -20,7 +22,7 @@
         player = new YT.Player('player', {
           height: '390',
           width: '640',
-          videoId: 'M7lc1UVf-VE',
+          videoId: 'QJ3pXBuWNFs',
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -39,7 +41,7 @@
       var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 1000);
+          setTimeout(stopVideo, 6000);
           done = true;
         }
       }
