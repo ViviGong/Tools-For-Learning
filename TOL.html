@@ -2,7 +2,8 @@
 <html>
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <div id="player"></div>
+      <iframe width="640" height="360" src="https://www.youtube.com/embed/QJ3pXBuWNFs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
@@ -38,7 +39,7 @@
       var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
+          setTimeout(stopVideo, 1000);
           done = true;
         }
       }
