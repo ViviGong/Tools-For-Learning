@@ -11,10 +11,12 @@
     <!-- <iframe width="651" height="366" src="https://www.youtube.com/embed/CuOV3-H2dJA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
         <div id="question">
+        <font color="red">
         <p id='optiona'>a</p><input type="radio"  name="1" value="a" />
         <p id='optionb'>b</p><input type="radio"  name="1" value="b" />
         <p id='optionc'>c</p> <input type="radio"  name="1" value="c" />
   <p id='optiond'>d</p><input type="radio"  name="1" value="d" />
+          <\font>
  <button type="button" onclick="go()">提交</button>
 </div>
     <script src="jquery-2.js"></script>
@@ -52,7 +54,7 @@
       var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
+          setTimeout(stopVideo, 3000);
           done = true;
         }
       }
