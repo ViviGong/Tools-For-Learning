@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
   <body>
+<style>
+#question{position:absolute;left:30px;top:30px;width;300px;height:300px;background:#000;z-index:-1;}
+#player{position:absolute;left:30px;top:30px;width;300px;height:300px;z-index:1;}
+</style>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
 
     <!-- <iframe width="651" height="366" src="https://www.youtube.com/embed/CuOV3-H2dJA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
-
-
+        <div id="question">
+        <p id='optiona'>a</p><input type="radio"  name="1" value="a" />
+        <p id='optionb'>b</p><input type="radio"  name="1" value="b" />
+        <p id='optionc'>c</p> <input type="radio"  name="1" value="c" />
+  <p id='optiond'>d</p><input type="radio"  name="1" value="d" />
+ <button type="button" onclick="go()">提交</button>
+</div>
+    <script src="jquery-2.js"></script>
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
@@ -21,8 +31,8 @@
       var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-          height: '390',
-          width: '640',
+          height: '300',
+          width: '300',
           videoId: 'CuOV3-H2dJA',
           events: {
             'onReady': onPlayerReady,
@@ -47,8 +57,22 @@
         }
       }
       function stopVideo() {
-        player.stopVideo();
+        player.pauseVideo();
+        document.getElementById('player').style['z-index']=-10;
+        document.getElementById('player').style['-webkit-transform']='translateZ(0)';
       }
+ function go(){
+      a=$('input:radio[name="1"]:checked').val();
+      if(a=='a'){
+          document.getElementById('player').style['z-index']=10;
+          document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+          player.seekTo(30,true);
+          player.playVideo();
+}
+      if(a=='b'){alert("还没编辑");}
+      if(a=='c'){alert("还没编辑");}
+      if(a=='d'){alert("还没编辑");}
+}
     </script>
   </body>
 </html>
