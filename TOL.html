@@ -16,10 +16,10 @@
         <p id='optionb'>b</p><input type="radio"  name="1" value="b" />
         <p id='optionc'>c</p> <input type="radio"  name="1" value="c" />
   <p id='optiond'>d</p><input type="radio"  name="1" value="d" />
-          <\font>
+          </font>
  <button type="button" onclick="go()">提交</button>
 </div>
-    <script src="jquery-2.js"></script>
+    <script src="jquery.js"></script>
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
@@ -65,6 +65,7 @@
       }
  function go(){
       a=$('input:radio[name="1"]:checked').val();
+      alert("something");
       if(a=='a'){
           document.getElementById('player').style['z-index']=10;
           document.getElementById('player').style['-webkit-transform']='translateZ(0)';
