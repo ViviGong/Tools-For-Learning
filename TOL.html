@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel = "stylesheet" type = "text/css" href="tol.css">
 <style>
 #hint{position:absolute;left:30px;top:30px;width:960px;height:540px;background-image: url("hint.jpg");;z-index:-1;}
 #question{position:absolute;left:30px;top:30px;width:960px;height:540px;background-image: url("quiz.jpg");;z-index:-1;}
@@ -13,17 +15,17 @@
 
     <div id="question">
       <font color="red">
-      <p id='optiona'></p><input type="radio"  name="1" value="a" />
-      <p id='optionb'></p><input type="radio"  name="1" value="b" />
-      <p id='optionc'></p> <input type="radio"  name="1" value="c" />
-      <p id='optiond'></p><input type="radio"  name="1" value="d" />
+      <p id='optiona'><input type="radio"  name="1" value="a" /></p>
+      <p id='optionb'><input type="radio"  name="1" value="b" /></p>
+      <p id='optionc'><input type="radio"  name="1" value="c" /></p>
+      <p id='optiond'><input type="radio"  name="1" value="d" /></p>
       </font>
-      <button type="button" onclick="feedback()">Submit</button>
-      <button type="button" onclick="hint()">Hint</button>
+      <button id="buttonsubmit" class="btn btn-primary btn-lg" type="button" onclick="feedback()">Submit</button>
+      <button id="buttonhint" class="btn btn-primary btn-lg" type="button" onclick="hint()">Hint</button>
     </div>
 
     <div id="hint">
-      <button type="button" onclick="backToQuestion()">Back to question.</button>
+      <button type="button" id="backtoquestion"class="btn btn-primary btn-lg" onclick="backToQuestion()">Back to question</button>
     </div>
 
     <script src="jquery.js"></script>
@@ -79,30 +81,48 @@
         if(userAnswer=='b'){
             document.getElementById('player').style['z-index']=10;
             document.getElementById('player').style['-webkit-transform']='translateZ(0)';
-            player.seekTo(70,true);
-            player.playVideo();
+            // player.seekTo(70,true);
+            // player.playVideo();
+            player.loadVideoById({'videoId':'CuOV3-H2dJA',
+                     'startSeconds':70,
+                     'endSeconds':72});
         }
         // incorrect answer: a
         if(userAnswer=='a'){
             document.getElementById('player').style['z-index']=10;
             document.getElementById('player').style['-webkit-transform']='translateZ(0)';
-            player.seekTo(88,true);
-            player.playVideo();
+            // player.seekTo(88,true);
+            // player.playVideo();
+            player.loadVideoById({'videoId':'CuOV3-H2dJA',
+                     'startSeconds':88,
+                     'endSeconds':90});
         }
         // incorrect answer: c
         if(userAnswer=='c'){
             document.getElementById('player').style['z-index']=10;
             document.getElementById('player').style['-webkit-transform']='translateZ(0)';
-            player.seekTo(117,true);
-            player.playVideo();
+            // player.seekTo(117,true);
+            // player.playVideo();
+            player.loadVideoById({'videoId':'CuOV3-H2dJA',
+                     'startSeconds':117,
+                     'endSeconds':119});
         }
         // incorrect answer: d
         if(userAnswer=='d'){
             document.getElementById('player').style['z-index']=10;
             document.getElementById('player').style['-webkit-transform']='translateZ(0)';
-            player.seekTo(142,true);
-            player.playVideo();
+            // player.seekTo(142,true);
+            // player.playVideo();
+            player.loadVideoById({'videoId':'CuOV3-H2dJA',
+                     'startSeconds':142,
+                     'endSeconds':144});
         }
+        // player.loadVideoById({'videoId':'CuOV3-H2dJA',
+        //              'startSeconds':168});
+        setTimeout(function () {
+          player.loadVideoById({'videoId':'CuOV3-H2dJA',
+                 'startSeconds':168});
+        }, 2000);
       }
 
       // provide hint
