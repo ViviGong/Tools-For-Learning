@@ -2,23 +2,30 @@
 <html>
   <body>
 <style>
-#question{position:absolute;left:30px;top:30px;width:300px;height:300px;background:#000;z-index:-1;}
-#player{position:absolute;left:30px;top:30px;width:300px;height:300px;z-index:1;}
+#hint{position:absolute;left:30px;top:30px;width:960px;height:540px;background-image: url("hint.jpg");;z-index:-1;}
+#question{position:absolute;left:30px;top:30px;width:960px;height:540px;background-image: url("quiz.jpg");;z-index:-1;}
+#player{position:absolute;left:30px;top:30px;width:960px;height:540px;z-index:1;}
 </style>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
 
     <!-- <iframe width="651" height="366" src="https://www.youtube.com/embed/CuOV3-H2dJA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
-        <div id="question">
-        <font color="red">
-        <p id='optiona'>a</p><input type="radio"  name="1" value="a" />
-        <p id='optionb'>b</p><input type="radio"  name="1" value="b" />
-        <p id='optionc'>c</p> <input type="radio"  name="1" value="c" />
-  <p id='optiond'>d</p><input type="radio"  name="1" value="d" />
-          </font>
- <button type="button" onclick="go()">提交</button>
-</div>
+    <div id="question">
+      <font color="red">
+      <p id='optiona'></p><input type="radio"  name="1" value="a" />
+      <p id='optionb'></p><input type="radio"  name="1" value="b" />
+      <p id='optionc'></p> <input type="radio"  name="1" value="c" />
+      <p id='optiond'></p><input type="radio"  name="1" value="d" />
+      </font>
+      <button type="button" onclick="feedback()">Submit</button>
+      <button type="button" onclick="hint()">Hint</button>
+    </div>
+
+    <div id="hint">
+      <button type="button" onclick="backToQuestion()">Back to question.</button>
+    </div>
+
     <script src="jquery.js"></script>
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
@@ -33,8 +40,8 @@
       var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-          height: '300',
-          width: '300',
+          height: '960',
+          width: '540',
           videoId: 'CuOV3-H2dJA',
           events: {
             'onReady': onPlayerReady,
@@ -54,27 +61,62 @@
       var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 3000);
+          setTimeout(stopVideo, 2000);
           done = true;
         }
       }
       function stopVideo() {
         player.pauseVideo();
+        // document.getElementById('player').id = 'question';
         document.getElementById('player').style['z-index']=-10;
         document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+        $("#hint").hide();
       }
- function go(){
-      a=$('input:radio[name="1"]:checked').val();
-      if(a=='a'){
-          document.getElementById('player').style['z-index']=10;
-          document.getElementById('player').style['-webkit-transform']='translateZ(0)';
-          player.seekTo(130,true);
-          player.playVideo();
-}
-      if(a=='b'){alert("还没编辑");}
-      if(a=='c'){alert("还没编辑");}
-      if(a=='d'){alert("还没编辑");}
-}
+      // pull up feedbacks according to learner's answer
+      function feedback(){
+        userAnswer=$('input:radio[name="1"]:checked').val();
+        // correct answer: b
+        if(userAnswer=='b'){
+            document.getElementById('player').style['z-index']=10;
+            document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+            player.seekTo(70,true);
+            player.playVideo();
+        }
+        // incorrect answer: a
+        if(userAnswer=='a'){
+            document.getElementById('player').style['z-index']=10;
+            document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+            player.seekTo(88,true);
+            player.playVideo();
+        }
+        // incorrect answer: c
+        if(userAnswer=='c'){
+            document.getElementById('player').style['z-index']=10;
+            document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+            player.seekTo(117,true);
+            player.playVideo();
+        }
+        // incorrect answer: d
+        if(userAnswer=='d'){
+            document.getElementById('player').style['z-index']=10;
+            document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+            player.seekTo(142,true);
+            player.playVideo();
+        }
+      }
+
+      // provide hint
+      function hint(){
+        $("#quiz").hide();
+        $("#hint").show();
+        // document.getElementById('question').id = 'hint';
+      }
+      // go back to the question
+      function backToQuestion(){
+        $("#hint").hide();
+        $("#question").show();
+        // document.getElementById('hint').id = 'question';
+      }
     </script>
   </body>
 </html>
